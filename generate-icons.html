@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+  Abre este archivo en Chrome, abre la consola y ejecuta generateIcons().
+  Se descargarán icon16.png, icon48.png, icon128.png.
+  Muévelos a la carpeta icons/.
+-->
+<html>
+<body>
+<canvas id="c"></canvas>
+<script>
+function drawIcon(size) {
+  const canvas = document.getElementById("c");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+
+  // Fondo verde
+  ctx.fillStyle = "#1a6b3a";
+  ctx.beginPath();
+  ctx.roundRect(0, 0, size, size, size * 0.18);
+  ctx.fill();
+
+  // Pelota de fútbol (emoji)
+  ctx.font = `${size * 0.65}px serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("⚽", size / 2, size / 2 + size * 0.04);
+
+  return canvas.toDataURL("image/png");
+}
+
+function download(dataUrl, filename) {
+  const a = document.createElement("a");
+  a.href = dataUrl;
+  a.download = filename;
+  a.click();
+}
+
+function generateIcons() {
+  [16, 48, 128].forEach(size => {
+    const dataUrl = drawIcon(size);
+    download(dataUrl, `icon${size}.png`);
+  });
+  console.log("✅ Iconos generados. Muévelos a la carpeta icons/");
+}
+
+generateIcons();
+</script>
+</body>
+</html>
