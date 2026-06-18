@@ -4,12 +4,7 @@ Extensión personal para seguir el Mundial 2026 sin cambiar de pestaña.
 
 ## Instalación (uso personal)
 
-### 1. Generar los iconos
-- Abre `generate-icons.html` en Chrome
-- Se descargan automáticamente `icon16.png`, `icon48.png`, `icon128.png`
-- Muévelos a la carpeta `icons/`
-
-### 2. Cargar en Chrome
+### 1. Cargar en Chrome
 1. Abre Chrome y ve a `chrome://extensions`
 2. Activa **"Modo desarrollador"** (switch arriba a la derecha)
 3. Click en **"Cargar descomprimida"**
@@ -36,16 +31,20 @@ wc2026-extension/
     └── icon128.png
 ```
 
-## Fuentes de datos
+## Fuente de datos
 
-| Prioridad | Fuente | Auth |
+| Fuente | Endpoint | Auth |
 |---|---|---|
-| 1 | wc26.ai | Ninguna |
-| 2 | openfootball (GitHub) | Ninguna |
-| 3 | Cache local | N/A |
+| **ESPN (scoreboard)** | `site.api.espn.com/.../fifa.world/scoreboard` | Ninguna |
+| **ESPN (standings)** | `site.api.espn.com/.../fifa.world/standings` | Ninguna |
+| **Cache local** | `chrome.storage.local` | N/A |
+
+ESPN expone una API JSON interna sin autenticación, verificada en funcionamiento durante el torneo.
+Si el endpoint falla, la extensión sirve el último dato conocido del cache con un aviso visual.
 
 ## Comportamiento
 
 - **Partido en vivo** → badge muestra `2-1` en rojo, refresco cada 2 min
-- **Sin partido** → refresco cada 15 min
-- **Todas las fuentes caídas** → muestra último dato conocido con aviso
+- **Sin partido activo** → refresco cada 15 min
+- **ESPN no responde** → muestra último dato conocido con aviso "datos desactualizados"
+- **Sin datos y sin cache** → mensaje claro de error con botón de reintento
