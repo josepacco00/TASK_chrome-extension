@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mundial 2026</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <span class="header-icon">⚽</span>
+      <span class="header-title">Mundial 2026</span>
+    </div>
+    <button id="btn-refresh" class="btn-refresh" title="Actualizar">
+      <span id="refresh-icon">↻</span>
+    </button>
+  </header>
+
+  <!-- PARTIDO EN VIVO -->
+  <section id="live-section" class="live-section hidden">
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      <span id="live-label">EN VIVO</span>
+      <span id="live-minute" class="live-minute"></span>
+    </div>
+    <div class="live-scoreboard">
+      <div class="live-team">
+        <span id="live-home-flag" class="team-flag"></span>
+        <span id="live-home-name" class="team-name"></span>
+      </div>
+      <div class="live-score">
+        <span id="live-home-score">0</span>
+        <span class="score-separator">-</span>
+        <span id="live-away-score">0</span>
+      </div>
+      <div class="live-team live-team-right">
+        <span id="live-away-name" class="team-name"></span>
+        <span id="live-away-flag" class="team-flag"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="today">HOY</button>
+    <button class="tab-btn" data-tab="groups">GRUPOS</button>
+  </nav>
+
+  <!-- TAB: HOY -->
+  <section id="tab-today" class="tab-content active">
+    <div id="today-list" class="match-list">
+      <!-- Generado por popup.js -->
+    </div>
+    <div id="today-empty" class="empty-state hidden">
+      <p id="today-empty-msg">No hay partidos hoy.</p>
+      <p id="next-match-info" class="next-match-info"></p>
+    </div>
+  </section>
+
+  <!-- TAB: GRUPOS -->
+  <section id="tab-groups" class="tab-content hidden">
+    <div id="groups-container">
+      <!-- Generado por popup.js -->
+    </div>
+    <div id="groups-empty" class="empty-state hidden">
+      <p>Sin datos de grupos disponibles.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span id="data-status" class="data-status">Cargando...</span>
+    <span id="last-updated" class="last-updated"></span>
+  </footer>
+
+  <!-- Estado de error general -->
+  <div id="error-overlay" class="error-overlay hidden">
+    <p class="error-icon">📡</p>
+    <p class="error-msg">No se pudo cargar.<br>Verifica tu conexión.</p>
+    <button id="btn-retry" class="btn-retry">Reintentar</button>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
